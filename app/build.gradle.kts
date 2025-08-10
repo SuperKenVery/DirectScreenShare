@@ -22,6 +22,7 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags += ""
+
             }
         }
     }
