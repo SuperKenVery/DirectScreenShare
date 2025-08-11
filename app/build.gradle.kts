@@ -20,10 +20,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         externalNativeBuild {
-            cmake {
-                cppFlags += ""
-
-            }
         }
     }
 
@@ -46,11 +42,14 @@ android {
     buildFeatures {
         compose = true
     }
+
     externalNativeBuild {
-        cmake {
-            path = file("CMakeLists.txt")
+        ndkBuild {
+            path=file("src/main/jni/Android.mk")
         }
     }
+
+
 }
 
 dependencies {
