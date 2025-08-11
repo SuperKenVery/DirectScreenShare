@@ -25,11 +25,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ken.directscreenshare.ui.theme.DirectScreenShareTheme
+import org.freedesktop.gstreamer.GStreamer
 
 class MainActivity : ComponentActivity() {
+    init {
+        System.loadLibrary("gstreamer_android")
+        System.loadLibrary("tutorial-1")
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        GStreamer.init(this)
         setContent {
             DirectScreenShareTheme {
                 AppNavHost()

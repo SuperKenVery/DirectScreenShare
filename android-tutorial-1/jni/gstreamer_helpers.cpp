@@ -22,15 +22,6 @@ void* gst_main_thread(void* data) {
     GstreamerHelperState *ctx = (GstreamerHelperState*) data;
 //    gst_init(nullptr, nullptr);
 
-    GstElement *src = gst_element_factory_make("appsrc", "test-src");
-    if (!src) {
-        ALOGE("appsrc element not found! Plugin may be missing.");
-        return nullptr;
-    } else {
-        ALOGI("appsrc found! Ref count: %d", GST_OBJECT_REFCOUNT(src));
-        gst_object_unref(src);
-    }
-
     // Create the GStreamer pipeline for multicast RTP streaming
     GError *err = nullptr;
     ctx->pipeline = gst_parse_launch(

@@ -54,11 +54,15 @@ private const val TAG = "ShareScreen"
 fun ShareScreen() {
     val activity = LocalActivity.current ?: return
     val mediaProjectionManager = remember { activity.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager }
+    if(!checkPermissions(activity)) {
+        Log.e(TAG, "Haven't got permission yet")
+    }
 
     val startMediaProjection = rememberLauncherForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if(result.resultCode==Activity.RESULT_OK && result.data != null){
+            Log.i(TAG, "Screen capture intent got OK result, code=${result.resultCode}, data=${result.data}")
 //            val mediaProjection = mediaProjectionManager.getMediaProjection(result.resultCode, result.data!!) ?: return@rememberLauncherForActivityResult
             val metrics = WindowMetricsCalculator.getOrCreate().computeMaximumWindowMetrics(activity)
             val serviceIntent = Intent(activity, ScreenCaptureService::class.java).apply {
@@ -66,11 +70,8 @@ fun ShareScreen() {
                 putExtra("bounds", metrics.bounds)
                 putExtra("dpi", metrics.density.toInt())
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                activity.startForegroundService(serviceIntent)
-            } else {
-                activity.startService(serviceIntent)
-            }
+            Log.i(TAG, "Kicking start foreground service...")
+            activity.startForegroundService(serviceIntent)
         }
     }
 
@@ -89,8 +90,6 @@ fun ShareScreen() {
         }
     ) { innerPadding ->
         Button(onClick = {
-            GStreamer.init(activity)
-
             startMediaProjection.launch(mediaProjectionManager.createScreenCaptureIntent())
         }, modifier = Modifier.padding(innerPadding)) {
             Text("Record screen")
@@ -156,6 +155,7 @@ class ScreenCaptureService : Service() {
     private var virtualDisplay: VirtualDisplay? = null
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+        Log.i(TAG, "Starting foreground service for capture screen")
         val req_record_result = intent.getParcelableExtra<ActivityResult>("result")!!
         val bounds = intent.getParcelableExtra<Rect>("bounds")!!
         val dpi = intent.getIntExtra("dpi", 100)

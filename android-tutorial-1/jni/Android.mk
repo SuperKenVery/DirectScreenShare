@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := tutorial-1
-LOCAL_SRC_FILES := tutorial-1.c dummy.cpp encode.cpp gstreamer_helpers.cpp entry.cpp
+LOCAL_SRC_FILES := dummy.cpp encode.cpp gstreamer_helpers.cpp entry.cpp
 LOCAL_SHARED_LIBRARIES := gstreamer_android
 LOCAL_LDLIBS := -llog -lmediandk -landroid
 include $(BUILD_SHARED_LIBRARY)
