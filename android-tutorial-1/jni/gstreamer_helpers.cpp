@@ -20,7 +20,7 @@ GstreamerHelperState::GstreamerHelperState(int width, int height): width(width),
 void* gst_main_thread(void* data) {
     ALOGI("gst_main_thread running");
     GstreamerHelperState *ctx = (GstreamerHelperState*) data;
-//    gst_init(nullptr, nullptr);
+    gst_init(nullptr, nullptr);
 
     // Create the GStreamer pipeline for multicast RTP streaming
     GError *err = nullptr;

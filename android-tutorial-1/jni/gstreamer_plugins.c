@@ -1,0 +1,40 @@
+#include <gst/gst.h>
+
+
+GST_PLUGIN_STATIC_DECLARE(coreelements);
+
+GST_PLUGIN_STATIC_DECLARE(rtp);
+
+GST_PLUGIN_STATIC_DECLARE(app);
+
+GST_PLUGIN_STATIC_DECLARE(vpx);
+
+
+GST_PLUGIN_STATIC_DECLARE(x264);
+
+GST_PLUGIN_STATIC_DECLARE(opengl);
+
+GST_PLUGIN_STATIC_DECLARE(videoparsersbad);
+
+GST_PLUGIN_STATIC_DECLARE(videofilter);
+GST_PLUGIN_STATIC_DECLARE(opus);
+GST_PLUGIN_STATIC_DECLARE(autodetect);
+GST_PLUGIN_STATIC_DECLARE(audioconvert);
+GST_PLUGIN_STATIC_DECLARE(rtpmanager);
+//GST_PLUGIN_STATIC_DECLARE(libav);
+/* Call this function to register static plugins */
+void gst_android_register_static_plugins(void) {
+    GST_PLUGIN_STATIC_REGISTER(coreelements);
+    GST_PLUGIN_STATIC_REGISTER(app);
+    GST_PLUGIN_STATIC_REGISTER(rtp);
+    GST_PLUGIN_STATIC_REGISTER(vpx);
+    GST_PLUGIN_STATIC_REGISTER(x264);
+    GST_PLUGIN_STATIC_REGISTER(opengl);
+    GST_PLUGIN_STATIC_REGISTER(videoparsersbad);
+    GST_PLUGIN_STATIC_REGISTER(videofilter);
+    GST_PLUGIN_STATIC_REGISTER(opus);
+    GST_PLUGIN_STATIC_REGISTER(autodetect);
+    GST_PLUGIN_STATIC_REGISTER(audioconvert);
+    GST_PLUGIN_STATIC_REGISTER(rtpmanager);
+//    GST_PLUGIN_STATIC_REGISTER(libav);
+}

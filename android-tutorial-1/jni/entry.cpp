@@ -5,13 +5,16 @@
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, TAG, __VA_ARGS__)
 
 ANativeWindow* create_encoder_surface(int width, int height);
-
+extern "C" void gst_android_register_static_plugins(void);
 
 extern "C"
 JNIEXPORT jobject JNICALL
 Java_com_ken_directscreenshare_NativeFuncs_createEncoderSurface(JNIEnv *env, jobject thiz,
                                                                     jint width, jint height) {
+    gst_android_register_static_plugins();
     auto native_window = create_encoder_surface(width, height);
     auto surface = ANativeWindow_toSurface(env, native_window);
     return surface;
 }
+
+
