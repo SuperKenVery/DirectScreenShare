@@ -2,9 +2,9 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := tutorial-1
-LOCAL_SRC_FILES := tutorial-1.c dummy.cpp
+LOCAL_SRC_FILES := tutorial-1.c dummy.cpp encode.cpp gstreamer_helpers.cpp entry.cpp
 LOCAL_SHARED_LIBRARIES := gstreamer_android
-LOCAL_LDLIBS := -llog
+LOCAL_LDLIBS := -llog -lmediandk -landroid
 include $(BUILD_SHARED_LIBRARY)
 
 override GSTREAMER_ROOT_ANDROID := /home/ken/AndroidStudioProjects/DirectScreenShare-worktrees/DirectScreenShare/app/src/main/cpp/gstreamer_libs
@@ -28,8 +28,8 @@ $(error Target arch ABI not supported: $(TARGET_ARCH_ABI))
 endif
 
 GSTREAMER_NDK_BUILD_PATH  := $(GSTREAMER_ROOT)/share/gst-android/ndk-build/
-GSTREAMER_PLUGINS         := coreelements
-GSTREAMER_EXTRA_LIBS      := -liconv
+GSTREAMER_PLUGINS         := $(GSTREAMER_PLUGINS_CORE)
+GSTREAMER_EXTRA_LIBS      := -liconv -lgstapp-1.0
 include $(GSTREAMER_NDK_BUILD_PATH)/gstreamer-1.0.mk
 
 
