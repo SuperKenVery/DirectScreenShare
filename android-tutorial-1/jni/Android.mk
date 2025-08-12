@@ -29,7 +29,7 @@ $(error Target arch ABI not supported: $(TARGET_ARCH_ABI))
 endif
 
 GSTREAMER_NDK_BUILD_PATH  := $(GSTREAMER_ROOT)/share/gst-android/ndk-build/
-GSTREAMER_PLUGINS         := libav videoparsersbad opengl rtp rtpmanager coreelements app vpx x264 videofilter opus autodetect audioconvert audioresample audiorate coreelements
+GSTREAMER_PLUGINS         := libav videoparsersbad opengl rtp rtpmanager coreelements app vpx x264 x265 videofilter opus autodetect audioconvert audioresample audiorate coreelements udp videotestsrc
 GSTREAMER_EXTRA_DEPS      := gstreamer-plugins-base-1.0 gstreamer-rtp-1.0 gmodule-2.0 glib-2.0 gstreamer-app-1.0 gstreamer-video-1.0
 GSTREAMER_EXTRA_LIBS      := -liconv
 include $(GSTREAMER_NDK_BUILD_PATH)/gstreamer-1.0.mk

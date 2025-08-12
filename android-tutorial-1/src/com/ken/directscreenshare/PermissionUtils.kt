@@ -5,9 +5,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import java.net.DatagramPacket
+import java.net.DatagramSocket
+import java.net.InetAddress
 
+private val TAG="PermissionUtils"
 
 fun hasPerm(context: Context, perm: String, atLeastApiLevel: Int = 0): Boolean {
     if(Build.VERSION.SDK_INT >= atLeastApiLevel)
@@ -25,5 +30,7 @@ fun checkPermissions(activity: Activity): Boolean {
         ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.NEARBY_WIFI_DEVICES), 100)
         return false
     }
+
     return true
 }
+
