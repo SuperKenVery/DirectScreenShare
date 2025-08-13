@@ -142,13 +142,6 @@ fun setupScreenCapture(bounds: Rect, dpi: Int, mediaProjection: MediaProjection,
     return virtualDisplay
 }
 
-object NativeFuncs {
-    init {
-        System.loadLibrary("tutorial-1")
-    }
-
-    external fun createEncoderSurface(width: Int, height: Int): Surface
-}
 
 
 class ScreenCaptureService : Service() {

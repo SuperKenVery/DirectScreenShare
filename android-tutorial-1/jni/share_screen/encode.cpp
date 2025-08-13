@@ -76,9 +76,9 @@ ANativeWindow* create_encoder_surface(int width, int height) {
     AMediaFormat_setString(format, AMEDIAFORMAT_KEY_MIME, "video/" ENCODING);
     AMediaFormat_setInt32(format, AMEDIAFORMAT_KEY_WIDTH, width);
     AMediaFormat_setInt32(format, AMEDIAFORMAT_KEY_HEIGHT, height);
-    AMediaFormat_setInt32(format, AMEDIAFORMAT_KEY_FRAME_RATE, 60);
-    AMediaFormat_setInt32(format, AMEDIAFORMAT_KEY_BIT_RATE, 8000000); // 8Mbps
-    AMediaFormat_setInt32(format, AMEDIAFORMAT_KEY_I_FRAME_INTERVAL, 2); // key frame every 2 seconds
+    AMediaFormat_setInt32(format, AMEDIAFORMAT_KEY_FRAME_RATE, 30);
+    AMediaFormat_setInt32(format, AMEDIAFORMAT_KEY_BIT_RATE, 1500000); // 1.5Mbps
+    AMediaFormat_setFloat(format, AMEDIAFORMAT_KEY_I_FRAME_INTERVAL, 2.0); // key frame every 2 seconds
     AMediaFormat_setInt32(format, AMEDIAFORMAT_KEY_COLOR_FORMAT, 2130708361); // kotlin: MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface
 
     ALOGI("Creating codec");

@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := tutorial-1
-LOCAL_SRC_FILES := dummy.cpp encode.cpp gstreamer_helpers.cpp entry.cpp gstreamer_plugins.c
+LOCAL_SRC_FILES := dummy.cpp share_screen/encode.cpp share_screen/gstreamer_helpers.cpp entry.cpp gstreamer_plugins.c view_screen.cpp
 LOCAL_SHARED_LIBRARIES := gstreamer_android
 LOCAL_LDLIBS := -llog -lmediandk -landroid
 include $(BUILD_SHARED_LIBRARY)
@@ -29,9 +29,9 @@ $(error Target arch ABI not supported: $(TARGET_ARCH_ABI))
 endif
 
 GSTREAMER_NDK_BUILD_PATH  := $(GSTREAMER_ROOT)/share/gst-android/ndk-build/
-GSTREAMER_PLUGINS         := libav videoparsersbad opengl rtp rtpmanager coreelements app vpx x264 x265 videofilter opus autodetect audioconvert audioresample audiorate coreelements udp videotestsrc
+GSTREAMER_PLUGINS         := libav videoparsersbad opengl rtp rtpmanager coreelements app vpx x264 x265 videofilter opus autodetect audioconvert audioresample audiorate coreelements udp videotestsrc androidmedia videoconvertscale
 GSTREAMER_EXTRA_DEPS      := gstreamer-plugins-base-1.0 gstreamer-rtp-1.0 gmodule-2.0 glib-2.0 gstreamer-app-1.0 gstreamer-video-1.0
-GSTREAMER_EXTRA_LIBS      := -liconv
+GSTREAMER_EXTRA_LIBS      := -liconv -landroid
 include $(GSTREAMER_NDK_BUILD_PATH)/gstreamer-1.0.mk
 
 

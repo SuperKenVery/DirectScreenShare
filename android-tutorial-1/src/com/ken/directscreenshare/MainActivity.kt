@@ -53,7 +53,7 @@ fun AppNavHost() {
 
     NavHost(
         navController = navController,
-        startDestination = Route.ShareScreen.route,
+        startDestination = Route.ViewScreen.route,
         enterTransition = {
             slideIntoContainer(
                 towards = AnimatedContentTransitionScope.SlideDirection.Left,
@@ -89,6 +89,10 @@ fun AppNavHost() {
 
         composable(Route.ShareScreen.route) {
             ShareScreen()
+        }
+
+        composable(Route.ViewScreen.route) {
+            ViewScreen()
         }
     }
 }
